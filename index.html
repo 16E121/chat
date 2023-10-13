@@ -1,0 +1,127 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <button id="join">Join</button>
+    <div id="chat" style="display: none">
+      <label for="to">Send to:</label>
+      <input type="text" id="to" placeholder="Recipient's username" />
+      <div id="messages"></div>
+      <input type="text" id="message" placeholder="Type a message" />
+      <button id="send">Send</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const usernameInput = document.getElementById('username');
+      const joinButton = document.getElementById('join');
+      const chatDiv = document.getElementById('chat');
+      const messageInput = document.getElementById('message');
+      const sendButton = document.getElementById('send');
+      const messagesDiv = document.getElementById('messages');
+      const toInput = document.getElementById('to');
+
+      let currentUser = null;
+
+      joinButton.addEventListener('click', () => {
+        const username = usernameInput.value;
+        if (username) {
+          socket.emit('user-join', username);
+          currentUser = username;
+          usernameInput.disabled = true;
+          joinButton.disabled = true;
+          chatDiv.style.display = 'block';
+        }
+      });
+
+      socket.on('user-connected', (username) => {
+        messagesDiv.innerHTML += `<p>${username} connected</p>`;
+      });
+
+      socket.on('message', (data) => {
+        messagesDiv.innerHTML += `<p><strong>${data.from}:</strong> ${data.message}</p>`;
+      });
+
+      sendButton.addEventListener('click', () => {
+        const message = messageInput.value;
+        const to = toInput.value;
+        if (message) {
+          socket.emit('message', { to, message });
+          messagesDiv.innerHTML += `<p><strong>You to ${to}:</strong> ${message}</p>`;
+          messageInput.value = '';
+        }
+      });
+
+      socket.on('user-disconnected', (username) => {
+        messagesDiv.innerHTML += `<p>${username} disconnected</p>`;
+      });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <button id="join">Join</button>
+    <div id="chat" style="display: none">
+      <label for="to">Send to:</label>
+      <input type="text" id="to" placeholder="Recipient's username" />
+      <div id="messages"></div>
+      <input type="text" id="message" placeholder="Type a message" />
+      <button id="send">Send</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const usernameInput = document.getElementById('username');
+      const joinButton = document.getElementById('join');
+      const chatDiv = document.getElementById('chat');
+      const messageInput = document.getElementById('message');
+      const sendButton = document.getElementById('send');
+      const messagesDiv = document.getElementById('messages');
+      const toInput = document.getElementById('to');
+
+      let currentUser = null;
+
+      joinButton.addEventListener('click', () => {
+        const username = usernameInput.value;
+        if (username) {
+          socket.emit('user-join', username);
+          currentUser = username;
+          usernameInput.disabled = true;
+          joinButton.disabled = true;
+          chatDiv.style.display = 'block';
+        }
+      });
+
+      socket.on('user-connected', (username) => {
+        messagesDiv.innerHTML += `<p>${username} connected</p>`;
+      });
+
+      socket.on('message', (data) => {
+        messagesDiv.innerHTML += `<p><strong>${data.from}:</strong> ${data.message}</p>`;
+      });
+
+      sendButton.addEventListener('click', () => {
+        const message = messageInput.value;
+        const to = toInput.value;
+        if (message) {
+          socket.emit('message', { to, message });
+          messagesDiv.innerHTML += `<p><strong>You to ${to}:</strong> ${message}</p>`;
+          messageInput.value = '';
+        }
+      });
+
+      socket.on('user-disconnected', (username) => {
+        messagesDiv.innerHTML += `<p>${username} disconnected</p>`;
+      });
+    </script>
+  </body>
+</html>
